@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link href="./style.css" rel="stylesheet">
+        <script defer src="script.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+        <h1>ROCK PAPER SCISSORS</h1>
+        </div>
+
+        <div>
+            <p class="round-result"></p>
+        </div>
+        <div class="btn-container">
+            <button class="btn" id="rock">ROCK</button>
+            <button class="btn" id="paper">PAPER</button>
+            <button class="btn" id="scissors">SCISSORS</button>          
+        </div>
+        <div>
+            <p class="round">Round: <span class="round-number"></span></p>
+        </div>
+        <div class="scores">
+            <p>Player Score: <span class="player-score"></span></p>
+            <p>Computer Score: <span class="computer-score"></span></p>
+        </div>
+        <div>
+            <p class="game-message">The first player to get 5 points wins the game!</p>
+        </div>
+        <div>
+            <button class="new-game-btn">NEW GAME</button>
+        </div>
+    </body>
+</html

@@ -1,0 +1,39 @@
+body {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  letter-spacing: 0.5rem;
+  margin-top: 100px;
+  padding-bottom: 40px;
+}
+
+.btn-container {
+  display: inline-block;
+  margin: 40px;
+}
+
+.btn {
+  padding: 12px 16px;
+  margin: auto 18px;
+  font-size: 16px;
+  background-color: lavender;
+  border-radius: 3px;
+}
+
+.scores {
+  margin-bottom: 10px;
+}
+
+.game-message {
+  font-style: italic;
+  padding: 12px;
+}
+
+.new-game-btn {
+  padding: 8px 12px;
+  margin: auto 18px;
+  background-color: lightcyan;
+  border-radius: 3px;
+}

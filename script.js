@@ -2,40 +2,84 @@ function game() {
   const choices = ["rock", "paper", "scissors"];
   let playerScore = 0;
   let computerScore = 0;
+  let round = 0;
 
   function computerPlay(choices) {
     return choices[Math.floor(Math.random() * choices.length)];
   }
 
-  function playRound(playerSelection, computerSelection, roundNumber) {
+  function playRound(playerSelection, computerSelection) {
+    round++;
     if (
       (playerSelection === "rock" && computerSelection === "scissors") ||
       (playerSelection === "paper" && computerSelection === "rock") ||
       (playerSelection === "scissors" && computerSelection === "paper")
     ) {
       playerScore++;
-      return `You win round ${roundNumber}!`;
+      return `YOU WIN!`;
     } else if (playerSelection === computerSelection) {
-      return `Round ${roundNumber} was a draw!`;
+      return `DRAW!`;
     } else {
       computerScore++;
-      return `The computer wins round ${roundNumber}!`;
+      return `THE COMPUTER WINS!`;
     }
   }
-  //=====
-  for (i = 0; i < 5; i++) {
-    let playerChoice = prompt("Rock, paper, or scissors?", "").toLowerCase();
-    let computerChoice = computerPlay(choices);
-    let round = i + 1;
-    let result = playRound(playerChoice, computerChoice, round);
-    console.log(result);
+
+  function updateUI(result, message) {
+    document.querySelector(".round-result").textContent = result;
+    document.querySelector(".player-score").textContent = playerScore;
+    document.querySelector(".computer-score").textContent = computerScore;
+    document.querySelector(".round-number").textContent = round;
+    document.querySelector(".game-message").textContent = message;
   }
 
-  if (playerScore > computerScore) {
-    return "You win the game! Woo Hoo!";
-  } else if (playerScore < computerScore) {
-    return "The computer wins the game! Womp Womp.";
-  } else if (playerScore === computerScore) {
-    return "It was a draw! No one wins. Play again!";
+  function checkForWinner() {
+    let gameMessage;
+    if (playerScore === 5) {
+      gameMessage = "You win the game! Woo Hoo!";
+      setBtnDisabled(true);
+    } else if (computerScore === 5) {
+      gameMessage = "The computer wins the game! Womp womp.";
+      setBtnDisabled(true);
+    } else {
+      gameMessage = "The first player to get 5 points wins the game!";
+    }
+    return gameMessage;
   }
+
+  function setBtnDisabled(status) {
+    const btns = document.querySelectorAll(".btn");
+    btns.forEach((btn) => {
+      btn.disabled = status;
+    });
+  }
+
+  function playerSelectionHandler(event) {
+    let playerChoice = event.target.id;
+    let computerChoice = computerPlay(choices);
+    let result = playRound(playerChoice, computerChoice);
+    let gameMessage = checkForWinner();
+    updateUI(result, gameMessage);
+  }
+
+  function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    round = 0;
+    let gameMessage = checkForWinner();
+    updateUI("", gameMessage);
+    setBtnDisabled(false);
+  }
+
+  //=====
+
+  const newGameBtn = document.querySelector(".new-game-btn");
+  newGameBtn.addEventListener("click", resetGame);
+
+  const btn = document.querySelectorAll(".btn");
+  btn.forEach((btn) => {
+    btn.addEventListener("click", playerSelectionHandler);
+  });
 }
+
+game();
